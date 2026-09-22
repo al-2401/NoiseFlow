@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Every user-facing string in the app lives here.
+
+  Features own their code but not their copy: with ten locales, translators
+  need one file to work on, not one per module. Source language is English,
+  not Russian, because that is what translation vendors and every TMS expect.
+
+  Rules: no string concatenation with numbers (use plurals), a comment on any
+  string whose meaning is not obvious out of context, and no reuse of one
+  string in two places that could diverge in another language.
+-->
+<resources>
+
+    <!-- Noise types. Keep the recognisable colour word; the hint carries the meaning. -->
+    <string name="noise_brown">Brown</string>
+    <string name="noise_brown_hint">deep rumble</string>
+    <string name="noise_pink">Pink</string>
+    <string name="noise_pink_hint">soft and even</string>
+    <string name="noise_white">White</string>
+    <string name="noise_white_hint">full and bright</string>
+    <string name="noise_blue">Blue</string>
+    <string name="noise_blue_hint">airy</string>
+    <string name="noise_violet">Violet</string>
+    <string name="noise_violet_hint">sharp hiss</string>
+    <string name="noise_grey">Grey</string>
+    <string name="noise_grey_hint">evenly loud to the ear</string>
+    <string name="noise_green">Green</string>
+    <string name="noise_green_hint">mid-range, natural</string>
+
+    <!-- Tone control. %1$s is a noise colour name such as "Pink". -->
+    <string name="tone_label">Tone</string>
+    <string name="tone_deeper_than">%1$s, deeper</string>
+    <string name="tone_brighter_than">%1$s, brighter</string>
+    <!-- Screen reader value: %1$s is the worded description, %2$s the slope number. -->
+    <string name="tone_accessibility">%1$s, %2$s decibels per octave</string>
+
+    <!-- Durations. %1$s is hours, %2$s is minutes, both already pluralised. -->
+    <string name="duration_hours_minutes">%1$s %2$s</string>
+    <plurals name="duration_minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+    <plurals name="duration_hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <!-- Player -->
+    <string name="player_play">Play</string>
+    <string name="player_pause">Pause</string>
+    <string name="player_volume">Volume</string>
+    <string name="player_night_screen">Night screen</string>
+    <string name="player_open_mixer">Layers</string>
+    <string name="player_no_sound">Pick a preset to start</string>
+    <string name="night_screen_exit">Tap to return</string>
+
+    <!-- Sleep timer -->
+    <string name="timer_title">Sleep timer</string>
+    <string name="timer_off">Off</string>
+    <string name="timer_until_alarm">Until my alarm</string>
+    <string name="timer_no_alarm_set">No alarm is set</string>
+    <!-- %1$s is a pluralised duration such as "45 minutes". -->
+    <string name="timer_remaining">%1$s left</string>
+
+    <!-- Mixer -->
+    <string name="mixer_title">Layers</string>
+    <string name="mixer_add_layer">Add layer</string>
+    <string name="mixer_remove_layer">Remove layer</string>
+    <string name="mixer_level">Level</string>
+    <string name="mixer_pan">Balance</string>
+    <string name="mixer_width">Stereo width</string>
+    <string name="mixer_room">Through the wall</string>
+    <string name="mixer_modulation">Movement</string>
+    <string name="mixer_save_preset">Save as preset</string>
+    <!-- Shown when the free tier's two-layer limit is reached. -->
+    <string name="mixer_layer_limit">Free mixes hold two layers</string>
+
+    <string name="modulation_none">None</string>
+    <string name="modulation_waves">Waves</string>
+    <string name="modulation_breath">Breath</string>
+    <string name="modulation_drift">Drift</string>
+
+    <!-- Presets -->
+    <string name="presets_title">Presets</string>
+    <string name="presets_mine">Mine</string>
+    <string name="presets_save">Save</string>
+    <string name="presets_rename">Rename</string>
+    <string name="presets_delete">Delete</string>
+    <string name="presets_share">Share</string>
+    <string name="presets_imported">Preset added</string>
+    <string name="presets_import_failed">That link could not be read</string>
+    <string name="presets_new_name">New preset</string>
+
+    <string name="preset_neighbour">Upstairs neighbour</string>
+    <string name="preset_aeroplane">Aeroplane</string>
+    <string name="preset_nursery">Nursery</string>
+    <string name="preset_rainfall">Rainfall</string>
+    <string name="preset_deep">Deep</string>
+    <string name="preset_focus">Focus</string>
+    <string name="preset_snoring">Snoring</string>
+    <string name="preset_traffic">Traffic</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_skin">Look</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">System language</string>
+    <string name="settings_night_curve">Night curve</string>
+    <string name="settings_night_curve_hint">Gradually quieter and deeper as the night goes on</string>
+    <string name="settings_volume_cap">Volume limit</string>
+    <string name="settings_volume_cap_hint">Caps how loud the sound can get. Recommended for children’s rooms.</string>
+    <string name="settings_analytics">Share anonymous usage data</string>
+    <string name="settings_analytics_hint">Off by default. Never includes what you listen to.</string>
+    <string name="settings_restore_purchases">Restore purchases</string>
+    <string name="settings_about">About</string>
+    <!-- Legal requirement: the app must not read as a medical device. -->
+    <string name="settings_disclaimer">NoiseFlow plays sound to help you rest. It is not a medical device and does not diagnose or treat any condition.</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title">NoiseFlow Pro</string>
+    <string name="paywall_subtitle">Every noise generator stays free, with no time limit. Pro adds depth.</string>
+    <string name="paywall_monthly">Monthly</string>
+    <string name="paywall_yearly">Yearly</string>
+    <string name="paywall_lifetime">One payment, forever</string>
+    <string name="paywall_cta">Continue</string>
+    <string name="paywall_restore">Restore</string>
+    <string name="paywall_free">Free</string>
+    <string name="paywall_pro">Pro</string>
+    <string name="paywall_feature_generators">All noise generators and the Tone control</string>
+    <string name="paywall_feature_layers">Up to eight layers instead of two</string>
+    <string name="paywall_feature_movement">Movement, depth and the night curve</string>
+    <string name="paywall_feature_presets">Unlimited saved presets</string>
+    <string name="paywall_feature_skins">Every look</string>
+    <string name="paywall_feature_widgets">Widgets and Wear OS</string>
+    <string name="paywall_feature_ads">No adverts, ever</string>
+    <string name="paywall_owned">You have Pro. Thank you.</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_tone_title">One dial, every kind of noise</string>
+    <string name="onboarding_tone_body">Slide from a deep rumble to a bright hiss. Nothing is a recording, so nothing ever loops.</string>
+    <string name="onboarding_sleep_title">Made for the middle of the night</string>
+    <string name="onboarding_sleep_body">Works offline, sips battery, and the screen stays dark when you need it to.</string>
+    <string name="onboarding_start">Start listening</string>
+
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="error_generic">Something went wrong</string>
+</resources>
