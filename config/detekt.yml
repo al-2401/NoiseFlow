@@ -1,0 +1,26 @@
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    threshold: 80
+  LongParameterList:
+    # Layer and skin descriptors are wide value types by nature.
+    functionThreshold: 10
+    constructorThreshold: 14
+  TooManyFunctions:
+    thresholdInClasses: 20
+
+style:
+  MagicNumber:
+    # DSP code is full of coefficients that are only meaningful as numbers.
+    excludes: ['**/core/audio/**', '**/designsystem/**', '**/test/**']
+  MaxLineLength:
+    maxLineLength: 120
+  ReturnCount:
+    max: 4
+
+naming:
+  FunctionNaming:
+    # Compose composables are PascalCase by convention.
+    ignoreAnnotated: ['Composable']

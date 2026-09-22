@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # The DSP is a plain Kotlin/JVM module, so its tests need no Android SDK and
+  # no emulator. They are the fastest and most valuable signal in the pipeline,
+  # so they run first and on their own.
+  audio-core:
+    name: Audio core
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Spectral and engine tests
+        run: ./gradlew :core:audio:test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: audio-core-report
+          path: core/audio/build/reports/tests/test
+
+  static-analysis:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew ktlintCheck detekt
+
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew testPlayDebugUnitTest
+
+  build:
+    name: Build both stores
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew assemblePlayDebug assembleRustoreDebug
+
+      # RuStore devices often have no Google Play Services at all. Catching a
+      # stray GMS dependency here is cheap; catching it in their review queue
+      # costs a release cycle.
+      - name: RuStore flavor must not depend on Google Play Services
+        run: |
+          ./gradlew :app:dependencies --configuration rustoreDebugRuntimeClasspath > deps.txt
+          if grep -qE "com\.google\.android\.gms" deps.txt; then
+            echo "::error::Google Play Services leaked into the rustore flavor"
+            grep -nE "com\.google\.android\.gms" deps.txt
+            exit 1
+          fi
+          echo "Clean: no GMS in the rustore graph"
+
+      - name: APK size budget
+        run: |
+          APK=$(find app/build/outputs/apk/play/debug -name "*.apk" | head -1)
+          SIZE=$(stat -c%s "$APK")
+          echo "APK: $SIZE bytes"
+          # The pitch is that the noise is generated, not shipped. If this
+          # budget starts failing, something is being bundled that should not be.
+          if [ "$SIZE" -gt 31457280 ]; then
+            echo "::error::APK exceeded the 30 MB budget"
+            exit 1
+          fi

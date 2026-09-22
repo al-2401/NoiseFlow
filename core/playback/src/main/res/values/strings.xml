@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shown as the track title in the media notification and on the lock screen. -->
+    <string name="playback_notification_title">NoiseFlow</string>
+    <!-- Shown as the artist line under the title in the media notification. -->
+    <string name="playback_notification_subtitle">Sleep sound</string>
+</resources>

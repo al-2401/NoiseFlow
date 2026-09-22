@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Skin names. Product names: keep them short, they sit under a swatch. -->
+    <string name="skin_midnight">Midnight</string>
+    <string name="skin_ember">Ember</string>
+    <string name="skin_machine">Machine</string>
+    <string name="skin_system">System</string>
+    <string name="skin_aurora">Aurora</string>
+    <string name="skin_forest">Forest</string>
+    <string name="skin_paper">Paper</string>
+    <string name="skin_terminal">Terminal</string>
+</resources>

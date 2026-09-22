@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches Skins.Midnight.palette.background. -->
+    <color name="window_background">#FF06080F</color>
+    <color name="ic_launcher_background">#FF06080F</color>
+</resources>
